@@ -1,19 +1,19 @@
-import { motion } from 'framer-motion';
-import { GlassCard } from '@/components/GlassCard';
-import * as Icons from 'lucide-react';
-import { aboutContent, coreTeam, advisors, teamExcellence } from '@/data/content';
-import { Navigation } from '@/components/Navigation';
-import { Footer } from '@/components/Footer';
+import { motion } from "framer-motion";
+import { GlassCard } from "@/components/GlassCard";
+import * as Icons from "lucide-react";
+import { aboutContent, coreTeam, advisors, teamExcellence } from "@/data/content";
+import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Navigation />
-      
+
       {/* Hero Section */}
       <section className="relative py-32 px-4 mt-24">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[150px]" />
-        
+
         <div className="relative container mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -26,12 +26,8 @@ export default function AboutPage() {
                 {aboutContent.heading}
               </span>
             </h1>
-            <h2 className="text-2xl md:text-4xl font-semibold text-foreground">
-              {aboutContent.subheading}
-            </h2>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              {aboutContent.body}
-            </p>
+            <h2 className="text-2xl md:text-4xl font-semibold text-foreground">{aboutContent.subheading}</h2>
+            <p className="text-xl text-muted-foreground leading-relaxed">{aboutContent.body}</p>
           </motion.div>
         </div>
       </section>
@@ -61,12 +57,8 @@ export default function AboutPage() {
                     <Icons.User className="w-12 h-12 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-foreground mb-1">
-                      {member.name}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {member.role}
-                    </p>
+                    <h3 className="text-xl font-bold text-foreground mb-1">{member.name}</h3>
+                    <p className="text-sm text-muted-foreground">{member.role}</p>
                   </div>
                 </div>
               </GlassCard>
@@ -86,9 +78,7 @@ export default function AboutPage() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                Advisors
-              </span>
+              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Advisors</span>
             </h2>
           </motion.div>
 
@@ -103,12 +93,8 @@ export default function AboutPage() {
                     <span className="inline-block px-3 py-1 bg-secondary/20 text-secondary text-xs font-semibold rounded-full mb-2">
                       Advisor
                     </span>
-                    <h3 className="text-lg font-bold text-foreground mb-1">
-                      {advisor.name}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {advisor.role}
-                    </p>
+                    <h3 className="text-lg font-bold text-foreground mb-1">{advisor.name}</h3>
+                    <p className="text-sm text-muted-foreground">{advisor.role}</p>
                   </div>
                 </div>
               </GlassCard>
@@ -120,7 +106,7 @@ export default function AboutPage() {
       {/* Why Our Team Excels */}
       <section className="relative py-20 px-4">
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-secondary/10 rounded-full blur-[150px]" />
-        
+
         <div className="relative container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -144,9 +130,9 @@ export default function AboutPage() {
             viewport={{ once: true }}
             className="mb-12"
           >
-            <img 
-              src="/assets/images/w7.jpg" 
-              alt="Aim Bright team" 
+            <img
+              src="/assets/images/w7.jpg"
+              alt="Aim Bright team"
               className="w-full max-w-4xl mx-auto rounded-2xl shadow-2xl"
             />
           </motion.div>
@@ -160,12 +146,8 @@ export default function AboutPage() {
                     <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center border border-primary/30">
                       <Icon className="w-8 h-8 text-primary" />
                     </div>
-                    <h3 className="text-2xl font-bold text-foreground">
-                      {item.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {item.description}
-                    </p>
+                    <h3 className="text-2xl font-bold text-foreground">{item.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">{item.description}</p>
                   </div>
                 </GlassCard>
               );
