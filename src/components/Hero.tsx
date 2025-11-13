@@ -1,25 +1,17 @@
 import { motion } from 'framer-motion';
-import { ParticleBackground } from './ParticleBackground';
 import { Button } from './ui/button';
 import { ArrowRight, Sparkles } from 'lucide-react';
-import heroBg from '@/assets/hero-bg.jpg';
 import { heroContent } from '@/data/content';
 import { GridScan } from './GridScan';
 
 export const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* White Background with Subtle Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30" />
-      
-      {/* Background Image with Overlay */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-5"
-        style={{ backgroundImage: `url(${heroBg})` }}
-      />
+      {/* White Background */}
+      <div className="absolute inset-0 bg-white" />
 
       {/* GridScan 3D Effect */}
-      <div className="absolute inset-0 opacity-30 pointer-events-auto">
+      <div className="absolute inset-0 opacity-40 pointer-events-auto">
         <GridScan
           sensitivity={0.55}
           lineThickness={1}
@@ -33,13 +25,6 @@ export const Hero = () => {
           noiseIntensity={0.01}
         />
       </div>
-      
-      {/* Particle Animation */}
-      <ParticleBackground />
-
-      {/* Gradient Glow Effects */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[128px] animate-glow" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-[128px] animate-glow" style={{ animationDelay: '1.5s' }} />
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center">
