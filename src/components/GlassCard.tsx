@@ -17,19 +17,26 @@ export const GlassCard = ({ children, className, delay = 0 }: GlassCardProps) =>
       viewport={{ once: true }}
       whileHover={{ 
         scale: 1.02,
-        boxShadow: '0 0 40px rgba(0, 217, 255, 0.4)',
+        y: -5,
+        boxShadow: '0 20px 60px rgba(0, 217, 255, 0.2), 0 0 0 1px rgba(0, 217, 255, 0.3)',
       }}
       className={cn(
-        "relative backdrop-blur-md bg-card/40 border border-white/10 rounded-2xl p-8",
-        "shadow-glass transition-all duration-300",
-        "hover:border-primary/50 hover:bg-card/60",
-        "before:absolute before:inset-0 before:rounded-2xl before:p-[1px]",
-        "before:bg-gradient-to-br before:from-primary/20 before:via-transparent before:to-secondary/20",
-        "before:-z-10 before:blur-sm",
+        "relative backdrop-blur-xl bg-white/70 border border-primary/20 rounded-3xl p-8",
+        "shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]",
+        "transition-all duration-500 ease-out",
+        "hover:border-primary/40 hover:bg-white/80",
+        "before:absolute before:inset-0 before:rounded-3xl before:p-[1px]",
+        "before:bg-gradient-to-br before:from-primary/30 before:via-transparent before:to-secondary/30",
+        "before:-z-10 before:blur-xl before:opacity-50",
+        "after:absolute after:inset-0 after:rounded-3xl",
+        "after:bg-gradient-to-br after:from-white/40 after:to-transparent",
+        "after:-z-10 after:opacity-0 hover:after:opacity-100 after:transition-opacity after:duration-500",
         className
       )}
     >
-      {children}
+      <div className="relative z-10">
+        {children}
+      </div>
     </motion.div>
   );
 };

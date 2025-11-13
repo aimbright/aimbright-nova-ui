@@ -3,7 +3,7 @@ import { Github, Linkedin, Twitter } from 'lucide-react';
 
 export const Footer = () => {
   return (
-    <footer className="relative border-t border-white/10 py-12 px-4">
+    <footer className="relative border-t border-primary/20 bg-gradient-to-br from-white to-blue-50/30 py-12 px-4">
       <div className="container mx-auto">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
@@ -60,7 +60,7 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/10 text-center text-muted-foreground text-sm">
+        <div className="pt-8 border-t border-primary/20 text-center text-muted-foreground text-sm">
           <p>&copy; {new Date().getFullYear()} Aim Bright. All rights reserved.</p>
         </div>
       </div>

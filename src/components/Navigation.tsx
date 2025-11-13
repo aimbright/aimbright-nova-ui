@@ -38,8 +38,8 @@ export const Navigation = () => {
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'backdrop-blur-lg bg-background/80 shadow-lg border-b border-white/10'
-          : 'bg-transparent'
+          ? 'backdrop-blur-xl bg-white/80 shadow-lg border-b border-primary/20'
+          : 'bg-white/50 backdrop-blur-md'
       }`}
     >
       <div className="container mx-auto px-4">
@@ -117,7 +117,7 @@ export const Navigation = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden backdrop-blur-lg bg-background/95 border-t border-white/10"
+            className="md:hidden backdrop-blur-xl bg-white/95 border-t border-primary/20"
           >
             <div className="py-6 space-y-4">
               {navLinks.map((link) => (
