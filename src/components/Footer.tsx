@@ -8,11 +8,11 @@ export const Footer = () => {
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                Aim Bright
-              </span>
-            </h3>
+            <img 
+              src="/assets/images/an2.png" 
+              alt="Aim Bright Logo" 
+              className="h-16 w-auto mb-4"
+            />
             <p className="text-muted-foreground">
               Building the future, one innovation at a time.
             </p>

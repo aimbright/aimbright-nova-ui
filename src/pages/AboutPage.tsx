@@ -136,6 +136,21 @@ export default function AboutPage() {
             </h2>
           </motion.div>
 
+          {/* Team Image */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mb-12"
+          >
+            <img 
+              src="/assets/images/w7.jpg" 
+              alt="Aim Bright team" 
+              className="w-full max-w-4xl mx-auto rounded-2xl shadow-2xl"
+            />
+          </motion.div>
+
           <div className="grid md:grid-cols-3 gap-8">
             {teamExcellence.map((item, index) => {
               const Icon = (Icons as any)[item.icon] || Icons.Star;

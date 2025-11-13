@@ -49,12 +49,14 @@ export const Navigation = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-2xl font-bold"
+            className="flex items-center"
           >
-            <Link to="/">
-              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                Aim Bright
-              </span>
+            <Link to="/" className="flex items-center gap-3">
+              <img 
+                src="/assets/images/an2.png" 
+                alt="Aim Bright Logo" 
+                className="h-12 w-auto"
+              />
             </Link>
           </motion.div>
 

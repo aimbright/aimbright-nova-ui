@@ -31,15 +31,18 @@ export const Hero = () => {
           transition={{ duration: 0.8 }}
           className="space-y-8"
         >
-          {/* Badge */}
+          {/* Logo Badge */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 backdrop-blur-md bg-primary/10 border border-primary/30 px-4 py-2 rounded-full text-sm font-medium text-primary"
+            className="flex justify-center mb-8"
           >
-            <Sparkles className="w-4 h-4" />
-            Next-Gen Technology Solutions
+            <img 
+              src="/assets/images/an2.png" 
+              alt="Aim Bright Logo" 
+              className="h-32 w-auto"
+            />
           </motion.div>
 
           {/* Main Heading */}
