@@ -3,6 +3,7 @@ import { ParticleBackground } from './ParticleBackground';
 import { Button } from './ui/button';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import heroBg from '@/assets/hero-bg.jpg';
+import { heroContent } from '@/data/content';
 
 export const Hero = () => {
   return (
@@ -49,11 +50,7 @@ export const Hero = () => {
             className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight"
           >
             <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-              Aim Bright
-            </span>
-            <br />
-            <span className="text-foreground">
-              Build The Future
+              {heroContent.title}
             </span>
           </motion.h1>
 
@@ -64,8 +61,7 @@ export const Hero = () => {
             transition={{ delay: 0.4 }}
             className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
           >
-            Transforming visionary ideas into cutting-edge digital experiences.
-            We craft intelligent solutions that push boundaries and redefine possibilities.
+            {heroContent.subtitle}
           </motion.p>
 
           {/* CTA Buttons */}
@@ -79,7 +75,7 @@ export const Hero = () => {
               size="lg"
               className="group bg-primary hover:bg-primary/90 text-primary-foreground shadow-glow-cyan transition-all duration-300 hover:shadow-glow-purple px-8 py-6 text-lg font-semibold"
             >
-              Start Your Project
+              {heroContent.cta}
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button

@@ -4,6 +4,7 @@ import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { GlassCard } from './GlassCard';
 import { Mail, MapPin, Phone } from 'lucide-react';
+import { contactInfo } from '@/data/content';
 
 export const Contact = () => {
   return (
@@ -36,17 +37,17 @@ export const Contact = () => {
               {
                 icon: Mail,
                 title: 'Email',
-                content: 'hello@aimbright.com',
+                content: contactInfo.email,
               },
               {
                 icon: Phone,
                 title: 'Phone',
-                content: '+1 (555) 123-4567',
+                content: contactInfo.phone,
               },
               {
                 icon: MapPin,
                 title: 'Location',
-                content: 'San Francisco, CA',
+                content: contactInfo.location,
               },
             ].map((item, index) => {
               const Icon = item.icon;

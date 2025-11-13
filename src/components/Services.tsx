@@ -1,39 +1,7 @@
 import { motion } from 'framer-motion';
 import { GlassCard } from './GlassCard';
-import { Code, Smartphone, Cloud, Sparkles, Cpu, Zap } from 'lucide-react';
-
-const services = [
-  {
-    icon: Code,
-    title: 'Web Development',
-    description: 'Cutting-edge web applications built with the latest technologies for optimal performance and user experience.',
-  },
-  {
-    icon: Smartphone,
-    title: 'Mobile Apps',
-    description: 'Native and cross-platform mobile solutions that deliver seamless experiences on any device.',
-  },
-  {
-    icon: Cloud,
-    title: 'Cloud Solutions',
-    description: 'Scalable cloud infrastructure and services that grow with your business needs.',
-  },
-  {
-    icon: Sparkles,
-    title: 'AI Integration',
-    description: 'Intelligent automation and machine learning solutions to transform your business operations.',
-  },
-  {
-    icon: Cpu,
-    title: 'IoT Development',
-    description: 'Connected device solutions that bridge the physical and digital worlds seamlessly.',
-  },
-  {
-    icon: Zap,
-    title: 'Performance Optimization',
-    description: 'Lightning-fast systems engineered for maximum efficiency and minimal downtime.',
-  },
-];
+import * as Icons from 'lucide-react';
+import { solutionCards } from '@/data/content';
 
 export const Services = () => {
   return (
@@ -52,7 +20,7 @@ export const Services = () => {
         >
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Our Services
+              Our Solutions
             </span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -62,8 +30,8 @@ export const Services = () => {
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => {
-            const Icon = service.icon;
+          {solutionCards.map((service, index) => {
+            const Icon = (Icons as any)[service.icon] || Icons.Code;
             return (
               <GlassCard key={index} delay={index * 0.1}>
                 <div className="space-y-4">
