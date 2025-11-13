@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
-import { GlassCard } from './GlassCard';
 import * as Icons from 'lucide-react';
 import { solutionCards } from '@/data/content';
+import ScrollStack, { ScrollStackItem } from './ScrollStack';
 
 export const Services = () => {
   return (
@@ -28,12 +28,22 @@ export const Services = () => {
           </p>
         </motion.div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Services Stack */}
+        <ScrollStack 
+          className="solutions-scroll-stack"
+          itemDistance={120}
+          itemScale={0.03}
+          itemStackDistance={35}
+          stackPosition="20%"
+          scaleEndPosition="12%"
+          baseScale={0.92}
+          rotationAmount={1.5}
+          blurAmount={1}
+        >
           {solutionCards.map((service, index) => {
             const Icon = (Icons as any)[service.icon] || Icons.Code;
             return (
-              <GlassCard key={index} delay={index * 0.1}>
+              <ScrollStackItem key={index}>
                 <div className="space-y-4">
                   <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center border border-primary/30">
                     <Icon className="w-8 h-8 text-primary" />
@@ -45,10 +55,10 @@ export const Services = () => {
                     {service.description}
                   </p>
                 </div>
-              </GlassCard>
+              </ScrollStackItem>
             );
           })}
-        </div>
+        </ScrollStack>
       </div>
     </section>
   );
