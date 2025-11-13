@@ -11,7 +11,7 @@ export default function AboutPage() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative py-32 px-4 mt-16">
+      <section className="relative py-32 px-4 mt-24">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[150px]" />
         
         <div className="relative container mx-auto text-center">

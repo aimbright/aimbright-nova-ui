@@ -1,30 +1,20 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Button } from './ui/button';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
 
 export const Navigation = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const toggleMenu = () => setMenuOpen((prev) => !prev);
+  const closeMenu = () => setMenuOpen(false);
 
-  const navLinks = [
-    { label: 'Home', path: '/' },
-    { label: 'About', path: '/about' },
-    { label: 'Services', path: '/services' },
-    { label: 'Contact', path: '/#contact' },
-  ];
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [location.pathname]);
 
   const scrollToContact = () => {
+    closeMenu();
     if (location.pathname !== '/') {
       window.location.href = '/#contact';
     } else {
@@ -32,134 +22,139 @@ export const Navigation = () => {
     }
   };
 
+  const NAV_LINKS = [
+    { label: 'Home', to: '/' },
+    { label: 'About', to: '/about' },
+    { label: 'Services', to: '/services' },
+  ];
+
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'backdrop-blur-xl bg-white/80 shadow-lg border-b border-primary/20'
-          : 'bg-white/50 backdrop-blur-md'
-      }`}
-    >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+    <>
+      <nav className="fixed top-5 left-0 right-0 z-50 flex justify-center w-full px-3 pointer-events-none">
+        <div className="w-full max-w-[1180px] backdrop-blur-xl bg-white/92 rounded-[32px] border border-primary/10 shadow-[0_24px_70px_rgba(9,20,38,0.2)] flex items-center gap-7 px-8 py-5 pointer-events-auto">
           {/* Logo */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="flex items-center"
-          >
-            <Link to="/" className="flex items-center gap-3">
+          <Link to="/" className="inline-flex items-center gap-3" onClick={closeMenu}>
+            <span className="w-12 h-12 rounded-full flex items-center justify-center">
+              <img src="/assets/images/an1.png" alt="Aim Bright emblem" className="w-10 h-auto" />
+            </span>
+            <span className="inline-flex items-center h-8">
               <img 
-                src="/assets/images/an2.png" 
-                alt="Aim Bright Logo" 
-                className="h-12 w-auto"
+                src="/assets/images/aim_title.png" 
+                alt="Aim Bright" 
+                className="h-full w-auto"
+                style={{ filter: 'brightness(0) saturate(100%) opacity(0.9)' }}
               />
-            </Link>
-          </motion.div>
+            </span>
+          </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link, index) => (
-              <motion.div
-                key={link.label}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 + index * 0.1 }}
-              >
-                {link.label === 'Contact' ? (
-                  <button
-                    onClick={scrollToContact}
-                    className="text-foreground/80 hover:text-primary transition-colors font-medium"
+          <div className="flex-1 hidden md:flex justify-end">
+            <ul className="flex items-center gap-4 list-none m-0 p-0">
+              {NAV_LINKS.map((link) => (
+                <li key={link.to}>
+                  <NavLink
+                    to={link.to}
+                    end={link.to === '/'}
+                    className={({ isActive }) =>
+                      `relative inline-flex items-center justify-center px-7 py-3.5 rounded-[22px] font-semibold text-[1.05rem] tracking-wide transition-colors ${
+                        isActive ? 'text-foreground' : 'text-foreground/65 hover:text-foreground'
+                      }`
+                    }
+                    onClick={closeMenu}
                   >
-                    {link.label}
-                  </button>
-                ) : (
-                  <Link
-                    to={link.path}
-                    className={`text-foreground/80 hover:text-primary transition-colors font-medium ${
-                      location.pathname === link.path ? 'text-primary' : ''
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                )}
-              </motion.div>
-            ))}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-            >
-              <Button
-                className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-glow-cyan"
-                onClick={scrollToContact}
-              >
-                Get Started
-              </Button>
-            </motion.div>
+                    {({ isActive }) => (
+                      <span className="inline-flex items-center gap-2.5">
+                        <span>{link.label}</span>
+                        {isActive && (
+                          <span className="w-6 h-6 bg-[url('/assets/images/bulb.png')] bg-center bg-contain inline-block drop-shadow-[0_3px_6px_rgba(255,198,73,0.48)]" />
+                        )}
+                      </span>
+                    )}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Desktop Actions */}
+          <div className="hidden md:inline-flex items-center gap-4">
+            <button
+              type="button"
+              onClick={scrollToContact}
+              className="font-semibold rounded-full px-6 py-3 border-2 border-foreground/20 bg-transparent text-foreground hover:bg-foreground/5 transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_24px_rgba(5,15,35,0.18)]"
+            >
+              Contact Us
+            </button>
+            <button
+              type="button"
+              onClick={scrollToContact}
+              className="font-semibold rounded-full px-6 py-3 border-2 border-[#ffc649] bg-[#ffc649] text-[#08203c] shadow-[0_14px_30px_rgba(255,198,73,0.35)] hover:bg-[#f4b832] transition-all hover:-translate-y-0.5 hover:shadow-[0_20px_42px_rgba(255,198,73,0.55)]"
+            >
+              Get in Touch
+            </button>
+          </div>
+
+          {/* Mobile Hamburger */}
           <button
-            className="md:hidden text-foreground"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            type="button"
+            className="md:hidden w-12 h-12 rounded-full border border-foreground/20 bg-white/92 flex flex-col items-center justify-center gap-1.5"
+            onClick={toggleMenu}
+            aria-label="Toggle navigation"
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            <span
+              className={`w-4 h-0.5 bg-foreground rounded transition-transform ${
+                menuOpen ? 'translate-y-2 rotate-45' : ''
+              }`}
+            />
+            <span
+              className={`w-4 h-0.5 bg-foreground rounded transition-opacity ${
+                menuOpen ? 'opacity-0' : ''
+              }`}
+            />
+            <span
+              className={`w-4 h-0.5 bg-foreground rounded transition-transform ${
+                menuOpen ? '-translate-y-2 -rotate-45' : ''
+              }`}
+            />
           </button>
         </div>
+      </nav>
 
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden backdrop-blur-xl bg-white/95 border-t border-primary/20"
-          >
-            <div className="py-6 space-y-4">
-              {navLinks.map((link) => (
-                <div key={link.label}>
-                  {link.label === 'Contact' ? (
-                    <button
-                      onClick={() => {
-                        scrollToContact();
-                        setIsMobileMenuOpen(false);
-                      }}
-                      className="block w-full text-left text-foreground/80 hover:text-primary transition-colors font-medium px-4 py-2"
-                    >
-                      {link.label}
-                    </button>
-                  ) : (
-                    <Link
-                      to={link.path}
-                      className={`block text-foreground/80 hover:text-primary transition-colors font-medium px-4 py-2 ${
-                        location.pathname === link.path ? 'text-primary' : ''
-                      }`}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {link.label}
-                    </Link>
-                  )}
-                </div>
-              ))}
-              <div className="px-4">
-                <Button 
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
-                  onClick={() => {
-                    scrollToContact();
-                    setIsMobileMenuOpen(false);
-                  }}
-                >
-                  Get Started
-                </Button>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </div>
-    </motion.nav>
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div className="md:hidden fixed inset-0 bg-foreground/90 backdrop-blur-md flex flex-col pt-28 px-8 pb-8 gap-4 z-40">
+          <ul className="list-none m-0 p-0 grid gap-3.5">
+            {NAV_LINKS.map((link) => {
+              const isActive = location.pathname === link.to;
+              return (
+                <li key={`mobile-${link.to}`}>
+                  <NavLink
+                    to={link.to}
+                    end={link.to === '/'}
+                    className={`block px-5 py-3.5 text-[1.05rem] rounded-2xl border transition-all ${
+                      isActive
+                        ? 'bg-[#ffc649]/30 text-white border-[#ffc649]/60'
+                        : 'text-white/85 border-white/10 hover:bg-white/10 hover:border-white/30'
+                    }`}
+                    onClick={closeMenu}
+                  >
+                    {link.label}
+                  </NavLink>
+                </li>
+              );
+            })}
+            <li className="mt-3">
+              <button
+                type="button"
+                onClick={scrollToContact}
+                className="w-full px-4 py-3 rounded-full bg-[#ffc649] text-[#08203c] font-semibold border-none shadow-[0_14px_28px_rgba(255,198,73,0.4)] hover:bg-[#f4b832]"
+              >
+                Get in Touch
+              </button>
+            </li>
+          </ul>
+        </div>
+      )}
+    </>
   );
 };
