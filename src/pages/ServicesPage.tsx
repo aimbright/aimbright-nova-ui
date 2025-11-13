@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { works } from '@/data/content';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
+import ScrollStack, { ScrollStackItem } from '@/components/ScrollStack';
 
 const services = [
   {
@@ -67,33 +68,41 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="relative py-20 px-4">
-        <div className="container mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <GlassCard key={index} delay={index * 0.1}>
-                <div className="space-y-4">
-                  {service.image && (
-                    <div className="w-full h-48 rounded-lg overflow-hidden">
-                      <img 
-                        src={service.image} 
-                        alt={service.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  )}
-                  <h3 className="text-2xl font-bold text-foreground">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {service.description}
-                  </p>
-                </div>
-              </GlassCard>
-            ))}
-          </div>
-        </div>
+      {/* Services Stack */}
+      <section className="relative">
+        <ScrollStack 
+          className="services-scroll-stack"
+          itemDistance={150}
+          itemScale={0.04}
+          itemStackDistance={40}
+          stackPosition="25%"
+          scaleEndPosition="15%"
+          baseScale={0.9}
+          rotationAmount={2}
+          blurAmount={1.5}
+        >
+          {services.map((service, index) => (
+            <ScrollStackItem key={index}>
+              <div className="space-y-4">
+                {service.image && (
+                  <div className="w-full h-64 rounded-2xl overflow-hidden">
+                    <img 
+                      src={service.image} 
+                      alt={service.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
+                <h3 className="text-3xl font-bold text-foreground">
+                  {service.title}
+                </h3>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
+            </ScrollStackItem>
+          ))}
+        </ScrollStack>
       </section>
 
       {/* Portfolio Section */}
