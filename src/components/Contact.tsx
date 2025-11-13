@@ -22,11 +22,11 @@ export const Contact = () => {
         >
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Let's Connect
+              Contact Us
             </span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Ready to transform your ideas into reality? Get in touch with our team.
+            Empowering Your Digital Future
           </p>
         </motion.div>
 
@@ -35,18 +35,23 @@ export const Contact = () => {
           <div className="space-y-6">
             {[
               {
+                icon: Phone,
+                title: 'Contact Number',
+                content: contactInfo.phone,
+              },
+              {
                 icon: Mail,
                 title: 'Email',
                 content: contactInfo.email,
               },
               {
                 icon: Phone,
-                title: 'Phone',
-                content: contactInfo.phone,
+                title: 'WhatsApp',
+                content: contactInfo.whatsapp,
               },
               {
                 icon: MapPin,
-                title: 'Location',
+                title: 'Address',
                 content: contactInfo.location,
               },
             ].map((item, index) => {

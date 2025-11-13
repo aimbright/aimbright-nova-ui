@@ -47,28 +47,42 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight"
+            className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-tight"
           >
             <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
               {heroContent.title}
             </span>
+            <br />
+            <span className="text-foreground text-5xl md:text-6xl lg:text-7xl">
+              {heroContent.subtitle}
+            </span>
           </motion.h1>
 
-          {/* Subtitle */}
+          {/* Tagline */}
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
+            className="text-3xl md:text-4xl font-bold text-foreground tracking-wide"
+          >
+            {heroContent.tagline}
+          </motion.p>
+
+          {/* Description */}
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
             className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
           >
-            {heroContent.subtitle}
+            {heroContent.description}
           </motion.p>
 
           {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
+            transition={{ delay: 0.6 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4"
           >
             <Button

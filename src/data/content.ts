@@ -1,7 +1,9 @@
 export const heroContent = {
-  title: "Aim Bright: Your All-in-One Software Solution",
-  subtitle: "From apps to cloud, social media to logos, we've got your startup covered",
-  cta: "Launch Your Vision",
+  title: "Aim Bright Powering Startups",
+  subtitle: "from Idea to Impact",
+  tagline: "We Build. We Design. We Launch.",
+  description: "Apps, cloud, branding, and digital presence — everything your startup needs, built right.",
+  cta: "Get a Free Consultation",
 };
 
 export const solutionCards = [
@@ -191,7 +193,8 @@ export const aboutHighlights = [
 ];
 
 export const contactInfo = {
-  email: "hello@aimbright.com",
-  phone: "+91 (999) 565-8333",
-  location: "Hyderabad, India",
+  email: "hello@aimbright.in",
+  phone: "+91 9966436633",
+  whatsapp: "+91 9966436633",
+  location: "19th Cross Road, JP Nagar, Bangalore-560078",
 };
