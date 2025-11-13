@@ -198,3 +198,63 @@ export const contactInfo = {
   whatsapp: "+91 9966436633",
   location: "19th Cross Road, JP Nagar, Bangalore-560078",
 };
+
+export const coreTeam = [
+  {
+    name: "Moin Sheik",
+    role: "Founder & software engineering",
+  },
+  {
+    name: "Sri Lakshmi R",
+    role: "CTO & software engineering",
+  },
+  {
+    name: "Joien Sheik",
+    role: "COO & Finance Manager",
+  },
+  {
+    name: "Syed Yasar",
+    role: "Full Stack Software Engineer",
+  },
+  {
+    name: "Vijay R",
+    role: "Graphic Designer",
+  },
+];
+
+export const advisors = [
+  {
+    name: "Hari Krishna K",
+    role: "Advisor & Co-Founder",
+  },
+  {
+    name: "Sulaman",
+    role: "Advisor - AI & Infra",
+  },
+  {
+    name: "Balu",
+    role: "Sr Software Engineer",
+  },
+  {
+    name: "Khazi",
+    role: "Advisor - DevOps",
+  },
+];
+
+export const teamExcellence = [
+  {
+    title: "Passion That Drives Us",
+    description: "We love what we do. Every project is a chance to create something meaningful and exciting. Our passion fuels our creativity and dedication.",
+    icon: "Heart",
+  },
+  {
+    title: "Dedication to Every Client",
+    description: "We treat every client's goals as our own with a strong work ethic to ensure your vision becomes a successful reality.",
+    icon: "Target",
+  },
+  {
+    title: "Backed by Knowledge & Skill",
+    description: "Our deep industry knowledge and technical expertise empower us to deliver smart, reliable, and future-ready solutions.",
+    icon: "Award",
+  },
+];

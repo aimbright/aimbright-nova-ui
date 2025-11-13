@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from './ui/button';
 import { Menu, X } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,7 +17,20 @@ export const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = ['Services', 'About', 'Contact'];
+  const navLinks = [
+    { label: 'Home', path: '/' },
+    { label: 'About', path: '/about' },
+    { label: 'Services', path: '/services' },
+    { label: 'Contact', path: '/#contact' },
+  ];
+
+  const scrollToContact = () => {
+    if (location.pathname !== '/') {
+      window.location.href = '/#contact';
+    } else {
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <motion.nav
@@ -36,24 +51,40 @@ export const Navigation = () => {
             transition={{ delay: 0.2 }}
             className="text-2xl font-bold"
           >
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Aim Bright
-            </span>
+            <Link to="/">
+              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                Aim Bright
+              </span>
+            </Link>
           </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link, index) => (
-              <motion.a
-                key={link}
+              <motion.div
+                key={link.label}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 + index * 0.1 }}
-                href={`#${link.toLowerCase()}`}
-                className="text-foreground/80 hover:text-primary transition-colors font-medium"
               >
-                {link}
-              </motion.a>
+                {link.label === 'Contact' ? (
+                  <button
+                    onClick={scrollToContact}
+                    className="text-foreground/80 hover:text-primary transition-colors font-medium"
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <Link
+                    to={link.path}
+                    className={`text-foreground/80 hover:text-primary transition-colors font-medium ${
+                      location.pathname === link.path ? 'text-primary' : ''
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                )}
+              </motion.div>
             ))}
             <motion.div
               initial={{ opacity: 0, y: -20 }}
@@ -62,6 +93,7 @@ export const Navigation = () => {
             >
               <Button
                 className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-glow-cyan"
+                onClick={scrollToContact}
               >
                 Get Started
               </Button>
@@ -87,17 +119,38 @@ export const Navigation = () => {
           >
             <div className="py-6 space-y-4">
               {navLinks.map((link) => (
-                <a
-                  key={link}
-                  href={`#${link.toLowerCase()}`}
-                  className="block text-foreground/80 hover:text-primary transition-colors font-medium px-4 py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link}
-                </a>
+                <div key={link.label}>
+                  {link.label === 'Contact' ? (
+                    <button
+                      onClick={() => {
+                        scrollToContact();
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="block w-full text-left text-foreground/80 hover:text-primary transition-colors font-medium px-4 py-2"
+                    >
+                      {link.label}
+                    </button>
+                  ) : (
+                    <Link
+                      to={link.path}
+                      className={`block text-foreground/80 hover:text-primary transition-colors font-medium px-4 py-2 ${
+                        location.pathname === link.path ? 'text-primary' : ''
+                      }`}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                  )}
+                </div>
               ))}
               <div className="px-4">
-                <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+                <Button 
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+                  onClick={() => {
+                    scrollToContact();
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
                   Get Started
                 </Button>
               </div>
