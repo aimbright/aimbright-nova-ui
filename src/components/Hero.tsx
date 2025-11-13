@@ -4,6 +4,7 @@ import { Button } from './ui/button';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import heroBg from '@/assets/hero-bg.jpg';
 import { heroContent } from '@/data/content';
+import { GridScan } from './GridScan';
 
 export const Hero = () => {
   return (
@@ -17,6 +18,22 @@ export const Hero = () => {
         style={{ backgroundImage: `url(${heroBg})` }}
       />
 
+      {/* GridScan 3D Effect */}
+      <div className="absolute inset-0 opacity-30 pointer-events-auto">
+        <GridScan
+          sensitivity={0.55}
+          lineThickness={1}
+          linesColor="#392e4e"
+          gridScale={0.1}
+          scanColor="#FF9FFC"
+          scanOpacity={0.4}
+          enablePost
+          bloomIntensity={0.6}
+          chromaticAberration={0.002}
+          noiseIntensity={0.01}
+        />
+      </div>
+      
       {/* Particle Animation */}
       <ParticleBackground />
 
